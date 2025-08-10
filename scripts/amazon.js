@@ -47,7 +47,7 @@ products.forEach((product) => {
           Added
         </div>
 
-        <button class="add-to-cart-button button-primary">
+        <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id ="${product.id}">
           Add to Cart
         </button>
       </div>
@@ -55,3 +55,34 @@ products.forEach((product) => {
 });
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+document.querySelectorAll('.js-add-to-cart')
+  .forEach((button) => {  //to loop through each of the buttton
+    button.addEventListener('click', ()=> {
+      const productId = button.dataset.productId;  // dataset property gives all data attributes attached to the button
+
+      //Checking if the item is in the cart or not
+      let matchingItem;
+
+      cart.forEach((item) => {
+        if(productId === item.productId){
+          matchingItem = item;
+        }
+      });
+
+      if(matchingItem) {
+        matchingItem.quantity += 1;  //if it is inside increasing the quantity
+      } else{
+        cart.push({          //if it is not inside insert the item in cart
+          productId: productId,
+          quantity: 1
+        });
+      }
+      console.log(cart);
+    })
+  });
+// It's better to use productID instead ot product name other products might also have the same name
+/*Steps to update the cart
+  1.Check if the product is already in the cart
+  2.If it is the cart,increase the quantity
+  3.If it's not in the cart,add it to the cart*/
