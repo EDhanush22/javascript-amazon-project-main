@@ -78,11 +78,23 @@ document.querySelectorAll('.js-add-to-cart')
           quantity: 1
         });
       }
-      console.log(cart);
+
+      let cartQuantity = 0;
+
+      cart.forEach((item) =>{
+        cartQuantity += item.quantity;
+      });
+
+      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity
     })
   });
 // It's better to use productID instead ot product name other products might also have the same name
 /*Steps to update the cart
   1.Check if the product is already in the cart
   2.If it is the cart,increase the quantity
-  3.If it's not in the cart,add it to the cart*/
+  3.If it's not in the cart,add it to the cart
+*/
+/*Update the cart quantity on page
+  1.Calculate the quantity
+  2.Put the quantity on the page (using DOM)
+*/ 
