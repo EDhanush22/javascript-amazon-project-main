@@ -1,3 +1,6 @@
+// Put all import at top of file and should always use live server
+import {cart} from '../data/cart.js';
+
 //Accumulator pattern
 let productsHTML = '';
 
