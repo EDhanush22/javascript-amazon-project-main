@@ -1,6 +1,7 @@
 // Put all import at top of file and should always use live server
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js'
+
 //Accumulator pattern
 let productsHTML = '';
 
@@ -59,37 +60,24 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+function updateCartQuantity(){
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) =>{
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+}
+
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {  //to loop through each of the buttton
     button.addEventListener('click', ()=> {
       const productId = button.dataset.productId;  // dataset property gives all data attributes attached to the button
-
-      //Checking if the item is in the cart or not
-      let matchingItem;
-
-      cart.forEach((item) => {
-        if(productId === item.productId){
-          matchingItem = item;
-        }
-      });
-
-      if(matchingItem) {
-        matchingItem.quantity += 1;  //if it is inside increasing the quantity
-      } else{
-        cart.push({          //if it is not inside insert the item in cart
-          productId: productId,
-          quantity: 1
-        });
-      }
-
-      let cartQuantity = 0;
-
-      cart.forEach((item) =>{
-        cartQuantity += item.quantity;
-      });
-
-      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity
-    })
+      addToCart(productId); //add product to our cart,inserting in cart.js file because they are related
+      updateCartQuantity(); //update cart quantity
+    });
   });
 // It's better to use productID instead ot product name other products might also have the same name
 /*Steps to update the cart
@@ -101,3 +89,4 @@ document.querySelectorAll('.js-add-to-cart')
   1.Calculate the quantity
   2.Put the quantity on the page (using DOM)
 */ 
+// Group related code together into its own file
