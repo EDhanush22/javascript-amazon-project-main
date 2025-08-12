@@ -32,14 +32,17 @@ export function removeFromCart(productID) {
   const newCart = [];
   cart.forEach((cartItem) => {
     if(cartItem.productId != productID){
-      newcart.push(cartItem);
+      newCart.push(cartItem);
     }
   });
 
   cart = newCart; //updating the cart
 }
-/* How to remove product
+/* How to remove product from cart
   1.Create a new array
   2.Loop through the cart
   3.Add each product to the new array,except for this productId 
 */
+//To remove product from page
+// Use DOM to get the element to remove
+// Use .remove() method
