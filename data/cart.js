@@ -1,12 +1,23 @@
-export let cart = [{
-  productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-  quantity: 2,
-  //save the id of the product we want and search for it in product.js this technique is called is normalizing the data
-}, {
-  productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-  quantity: 1
-}];
+export let cart = JSON.parse(localStorage.getItem('cart'));
+
+if (!cart){
+  cart = [{
+    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+    quantity: 2,
+    //save the id of the product we want and search for it in product.js this technique is called is normalizing the data
+  }, {
+    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    quantity: 1
+  }];
+}
+// Variables are reset when we go to the different page or reset the page
 // we use productId to search for the products like name and image etc
+// We use local storaage to save our cart
+// setItem take two things name whatever we want to save,data we want to save
+
+function saveToStorage(){
+  localStorage.setItem('cart',JSON.stringify(cart));
+}
 
 export function addToCart(productId){
   //Checking if the item is in the cart or not
@@ -26,6 +37,9 @@ export function addToCart(productId){
       quantity: 1
     });
   }
+
+  // Whenever we are updating the cart we are saving to local storage
+  saveToStorage();
 }
 
 export function removeFromCart(productID) {
@@ -37,6 +51,8 @@ export function removeFromCart(productID) {
   });
 
   cart = newCart; //updating the cart
+  
+  saveToStorage();
 }
 /* How to remove product from cart
   1.Create a new array
