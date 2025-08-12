@@ -1,4 +1,4 @@
-export const cart = [{
+export let cart = [{
   productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
   quantity: 2,
   //save the id of the product we want and search for it in product.js this technique is called is normalizing the data
@@ -27,3 +27,19 @@ export function addToCart(productId){
     });
   }
 }
+
+export function removeFromCart(productID) {
+  const newCart = [];
+  cart.forEach((cartItem) => {
+    if(cartItem.productId != productID){
+      newcart.push(cartItem);
+    }
+  });
+
+  cart = newCart; //updating the cart
+}
+/* How to remove product
+  1.Create a new array
+  2.Loop through the cart
+  3.Add each product to the new array,except for this productId 
+*/
