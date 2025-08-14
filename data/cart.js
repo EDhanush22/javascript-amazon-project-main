@@ -57,6 +57,29 @@ export function removeFromCart(productID) {
   
   saveToStorage();
 }
+
+//Updating deliverydate in the cart
+export function updateDeliveryOption(productId,deliveryOptionId){
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if(productId === cartItem.productId){
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
+
+  saveToStorage();
+}
+
+
+
+
+
+
+
+
 /* How to remove product from cart
   1.Create a new array
   2.Loop through the cart
