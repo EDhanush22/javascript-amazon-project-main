@@ -1,15 +1,9 @@
 import {cart,removeFromCart,updateDeliveryOption} from '../../data/cart.js';  //Named export
 import {products,getProduct} from '../../data/products.js';
-import {formatCurrency} from '../utils/money.js'
-import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
+import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';  //default export   
 import {deliveryOptions,getDeliveryOption} from '../../data/deliveryOptions.js';
-
-hello();
-
-const today = dayjs();
-const deliveryDate = today.add(7,'days') //Adds 7 days to the current day
-console.log(deliveryDate.format('dddd, MMMM D')); //display the date and day 
+import {renderPaymentSummary} from './paymentSummary.js'
 
 export function renderOrderSummary(){
   let cartSummaryHTML = '';
@@ -115,6 +109,8 @@ export function renderOrderSummary(){
 
         const container = document.querySelector(`.js-cart-item-container-${productId}`);
         container.remove();
+
+        renderPaymentSummary(); //updating page when a product is deleted,also example of using MVC
       });
     }); 
   // If radio selector has the same name we can inly select 1
@@ -125,6 +121,7 @@ export function renderOrderSummary(){
       const {productId,deliveryOptionId} = element.dataset;
       updateDeliveryOption(productId,deliveryOptionId);
       renderOrderSummary(); //To update the HTML after the cart changes.
+      renderPaymentSummary(); //Updating payment summary when delivery is changed
     });
   }); 
 }

@@ -71,7 +71,7 @@ export function renderPaymentSummary(){
 /* Main idea of Javascript
   1.Save the data(Model)
   2.Generate the HTML(View)
-  3.Make it interactive()
+  3.Make it interactive(Controller)
 */
 
 /* Steps to cost of product
