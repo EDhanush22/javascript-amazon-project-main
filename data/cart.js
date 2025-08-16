@@ -16,7 +16,7 @@ if (!cart){
     quantity: 1,
     deliveryOptionId: '2'
   }];
-}
+ }
 }
 // Variables are reset when we go to the different page or reset the page
 // we use productId to search for the products like name and image etc
@@ -78,13 +78,6 @@ export function updateDeliveryOption(productId,deliveryOptionId){
 
   saveToStorage();
 }
-
-
-
-
-
-
-
 
 /* How to remove product from cart
   1.Create a new array
