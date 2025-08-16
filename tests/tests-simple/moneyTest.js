@@ -1,4 +1,4 @@
-import {formatCurrency} from '../scripts/utils/money.js'
+import {formatCurrency} from '../../scripts/utils/money.js'
 
 //Testing fromatCurrency,This coms under automated testing = using code to test code
 //test suite = group of related tests
