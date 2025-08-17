@@ -1,14 +1,14 @@
 class Cart { // class is an object generator
     cartItems;
-    loadStorageKey;
+    #localStorageKey;   // Making it private
 
     constructor(localStorageKey) {   // after creating the object then it runs the constructor(everytime)
-        this.loadStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
-     loadFromStorage() {                                               
-      this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));  
+     #loadFromStorage() {         //Making it private                                       
+      this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));  
 
       if (!this.cartItems){
         this.cartItems = [{
@@ -24,7 +24,7 @@ class Cart { // class is an object generator
     }
 
      saveToStorage() {
-      localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
+      localStorage.setItem(this.#localStorageKey,JSON.stringify(this.cartItems));
     }
 
     addToCart(productId){
@@ -83,3 +83,5 @@ const businessCart = new Cart('cart-business');
 console.log(cart);
 console.log(businessCart);
 console.log(businessCart instanceof Cart) //check if the object is generated fromm the respective class
+
+// Private = it can only be accessed inside the class
