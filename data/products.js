@@ -58,6 +58,32 @@ class Clothing extends Product {
     `;
   }
 }
+
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+// .toLocalTimeString() = gives the current time
+*/
+
+// console.log(this); // it is undefined
+
+/*
+const object2 = {
+  a: 2,
+  b: this.a
+}
+*/
+
+/*
+function logThis() {
+  console.log(this);
+}
+logThis();
+logThis.call('hello');
+*/
+
+
 /*
 Practice code
 const tshirt = new Clothing({
