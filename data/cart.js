@@ -79,6 +79,20 @@ export function updateDeliveryOption(productId,deliveryOptionId){
   saveToStorage();
 }
 
+export let products = [];
+
+export function loadCart(fun) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response);
+    fun();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
+}
+
 /* How to remove product from cart
   1.Create a new array
   2.Loop through the cart
