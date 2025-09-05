@@ -5,6 +5,22 @@ import {loadCart} from '../data/cart.js'
 // import '../data/cart-class.js'     //Runs all the code inside file without importing
 // import '../data/backend-practice.js';
 
+async function loadPage() {   // returns a primise so we can add next step
+  
+  await loadProductsFetch();        // wait for the line to finish
+
+  const value = await new Promise((resolve) => {
+    loadCart(() => {
+      resolve('value3');
+    });
+  });
+
+  renderOrderSummary();
+  renderPaymentSummary();
+}
+loadPage();
+
+/*
 Promise.all([ 
   loadProductsFetch(),
   new Promise((resolve) => {
@@ -18,6 +34,7 @@ Promise.all([
   renderOrderSummary();
   renderPaymentSummary();
 });
+*/
 
 /*
 new Promise((resolve) => {
@@ -40,7 +57,7 @@ new Promise((resolve) => {
 });
 */
 
-// we run multiple promises at the same time,to do thar we use the feature Promise.all()
+// we run multiple promises at the same time,to do that we use the feature Promise.all()
 // let us run multiple promises at the same time
 // and wait for all of them to finidh
 
@@ -62,3 +79,11 @@ loadProducts(() => {
 // promise does the same thing as callback
 // multiple callbacks cause a lot of nesting so we use callbacks
 // promise is used to run asynchronous code
+
+// async wait is a better way to handle asynchronous code 
+// promises create a lot of extra code,async await is a shortcut for promises
+// async makes a function return a promise
+// async lets us use await
+// await = let us wait for a promise to finish,before going to the next line
+// we can only use wait when were inside an async function
+// Use async wait over promises and callbacks
